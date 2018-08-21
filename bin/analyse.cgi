@@ -11,14 +11,20 @@ use lib File::Spec->catdir( $FindBin::Bin, '..', 'cgi-lib' );
 use Swaggle::Database;
 use Swaggle::Data::Set;
 use Data::Dmp;
+use Swaggle::Analytics::General;
+use Path::Tiny qw/path/;
+
+my $basedir = path( $0 )->parent(2);
 
 
 my $db = Swaggle::Database->new(
- [ name => 'local', type => 'sqlite', path => '/Users/masterbee/Desktop/my.anvil/swaggle/db/database.sqlite' ]
+ [ name => 'local', type => 'sqlite', path => $basedir->child('db/database.sqlite')->stringify ]
 );
 
-my @data = @{ $db->get('local')->all('dailygrand', 5) };
+my @data = @{ $db->get('local')->weekday('dailygrand', 2) };
 
 my $set = Swaggle::Data::Set->new( @data );
 
-dd $set;
+my $report = Swaggle::Analytics::General->new( $set );
+
+$report->report();

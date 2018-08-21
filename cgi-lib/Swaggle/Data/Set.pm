@@ -1,5 +1,17 @@
-package Swaggle::Data::Set;
+#
+#  Set.pm
+#  swaggle
+#
+#  Created by Mario Bonito on 2018-08-18.
+#  
+#  Normalizes Dataset to a consitant format
+#  {
+#   'cols' => <ARRAY> array of cols names
+#	'data' => <ARRAYOFARRAY> array of arrays of col data seperated per column
+#	'total' => <INT> total number of draws	
+#  }
 
+package Swaggle::Data::Set;
 
 sub new
 {
@@ -50,12 +62,12 @@ sub _startswith
 
 sub data
 {
-	return $_[0]->{data};
+	return @{ $_[0]->{data} };
 }
 
 sub cols
 {
-	return $_[0]->{cols};
+	return @{ $_[0]->{cols} };
 }
 
 sub total
