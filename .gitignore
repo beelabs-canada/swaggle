@@ -65,6 +65,6 @@ GitHub.sublime-settings
 *.tmproject
 tmtags
 
-database.sqlite
+*.sqlite
 
 # End of https://www.gitignore.io/api/osx,textmate,sublimetext

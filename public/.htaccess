@@ -1,6 +1,14 @@
 
 DirectoryIndex index.json index.html index.htm index.cgi
 
+
+RewriteEngine On
+RewriteBase /
+RewriteRule ^index\.cgi$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /v1/index.cgi [L]
+
 # ######################################################################
 # # CROSS-ORIGIN                                                       #
 # ######################################################################
